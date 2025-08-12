@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
             li.appendChild(removeBtn);
             taskList.appendChild(li);
             taskInput.value = "";
+        } else {
+            alert("Please enter a task!");
         }
     }
 
