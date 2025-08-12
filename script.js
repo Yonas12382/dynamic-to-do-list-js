@@ -3,18 +3,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
+    let isInitialLoad = true;
+
     function addTask() {
         const taskText = taskInput.value.trim();
         if (taskText === "") {
-            alert("Please enter a task!");
+            if (!isInitialLoad) alert('Please enter a task!');
+            isInitialLoad = false;
             return;
         }
-
         const li = document.createElement('li');
         li.textContent = taskText;
 
         const removeBtn = document.createElement('button');
-        removeBtn.textContent = "Remove";
+        removeBtn.textContent = 'Remove';
         removeBtn.className = 'remove-btn';
 
         removeBtn.onclick = function () {
@@ -23,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         li.appendChild(removeBtn);
         taskList.appendChild(li);
-        taskInput.value = "";
+        taskInput.value = '';
+        isInitialLoad = false;
     }
 
     addButton.addEventListener('click', addTask);
@@ -33,4 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
             addTask();
         }
     });
+
+    addTask();
 });
